@@ -45,7 +45,7 @@ export interface Action<P> {
  */
 export type Reducer<S> = <A extends Action<S>>(state: S, action: A) => S;
 
-/* create Action Type */
+/* Create Action Type */
 
 /**
  * Create Action Type
@@ -53,20 +53,7 @@ export type Reducer<S> = <A extends Action<S>>(state: S, action: A) => S;
  */
 export function createActionType(...type: [string]): string;
 
-/* create Reducer */
-
-export interface CustomReducersMapObject {
-  [key: string]: CustomReducersMapObject | void;
-}
-
-/**
- * Create an reducer
- * @param defaultState The default state of the reducer
- * @param reducerMap The tree object containing 'Leafs' with reducer functions
- */
-export function createReducer<S, CustomReducersMapObject>(defaultState, reducerMap): Reducer<S>;
-
-/* create Action Creator */
+/* Create Action Creator */
 
 /**
  * A function that creates actions.
@@ -80,4 +67,16 @@ export interface ActionCreator<P> {
  * @param type The ActionType
  */
 export function createActionCreator<P>(...type: [string]): ActionCreator<P>;
+
+/* Create Reducer */
+export interface CustomReducersMapObject {
+  [key: string]: CustomReducersMapObject | void;
+}
+
+/**
+ * Create an reducer
+ * @param defaultState The default state of the reducer
+ * @param reducerMap The tree object containing 'Leafs' with reducer functions
+ */
+export function createReducer<S, CustomReducersMapObject>(defaultState, reducerMap): Reducer<S>;
 

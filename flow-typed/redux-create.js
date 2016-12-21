@@ -9,17 +9,17 @@ declare module "redux-create" {
 
   declare function createActionType(...type: Array<string>): string;
 
-  /* create Reducer */
-
-  declare type CustomReducersMapObject = {
-    [key: string]: CustomReducersMapObject | void;
-  }
-
-  declare function createReducer<S, R: CustomReducersMapObject>(defaultState: S, reducerMap: R):
-  Reducer<S, Action<S>>;
-
   /* create Action Creator */
   declare type ActionCreator<P> = (payload?: P) => Action<P>;
 
   declare function createActionCreator<P>(...type: Array<string>): ActionCreator<P>;
+
+  /* create Reducer */
+  declare type CustomReducersMapObject = {
+    [key: string]: CustomReducersMapObject | void;
+  }
+
+
+  declare function createReducer<S, R: CustomReducersMapObject>(defaultState: S, reducerMap: R):
+  Reducer<S, Action<S>>;
 }
