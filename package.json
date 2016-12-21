@@ -23,6 +23,9 @@
     "flow"
   ],
   "license": "MIT",
+  "engines" : {
+    "node" : ">=4"
+  },
   "scripts": {
     "clean": "rimraf dist coverage",
     "test": "yarn run lint:fix && cross-env BABEL_ENV=commonjs jest --testPathPattern /src/",
@@ -32,7 +35,7 @@
     "lint": "eslint \"src/**\"",
     "lint:fix": "eslint \"src/**\" --fix",
     "build": "babel src --out-dir dist",
-    "prepublish": "npm run clean && npm run lint:fix && npm run build && npm run test:travis:coverage",
+    "prepublish": "npm run clean && npm run lint && npm run build && npm run test:travis:coverage",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
     "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
