@@ -1,6 +1,8 @@
-import reduce from "lodash.reduce";
-import isFunction from "lodash.isfunction";
-import isObject from "lodash.isobject";
+import {
+  reduce,
+  isFunction,
+  isObject,
+} from "lodash";
 import createActionType from "./createActionType";
 
 const createReducer = (defaultState, reducerMap) => {

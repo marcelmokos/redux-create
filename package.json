@@ -25,13 +25,14 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist coverage",
-    "test": "cross-env BABEL_ENV=commonjs jest --testPathPattern /src/",
+    "test": "yarn run lint:fix && cross-env BABEL_ENV=commonjs jest --testPathPattern /src/",
     "test:watch": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage",
     "test:travis:coverage": "cross-env BABEL_ENV=commonjs jest --testPathPattern /dist/ --coverage",
+    "lint": "eslint \"src/**\"",
     "lint:fix": "eslint \"src/**\" --fix",
     "build": "babel src --out-dir dist",
-    "prepublish": "npm run clean && npm run build && npm run lint:fix && npm run test:travis:coverage",
+    "prepublish": "npm run clean && npm run lint:fix && npm run build && npm run test:travis:coverage",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
     "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
@@ -41,10 +42,7 @@
     "test:coverage"
   ],
   "dependencies": {
-    "lodash.flattendeep": "latest",
-    "lodash.isfunction": "latest",
-    "lodash.isobject": "latest",
-    "lodash.reduce": "latest"
+    "lodash": "latest"
   },
   "devDependencies": {
     "babel": "latest",
