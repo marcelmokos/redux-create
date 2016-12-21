@@ -1,0 +1,5 @@
+coverage/
+node_modules/
+.travis.yml
+dist/*.[test|spec].js
+.idea/

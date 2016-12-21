@@ -1,0 +1,68 @@
+{
+  "name": "redux-create",
+  "version": "1.0.0",
+  "description": "redux create reducer, action type and creator",
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "repository": {
+    "url": "https://github.com/marcelmokos/redux-create.git",
+    "type": "git"
+  },
+  "authors": [
+    "Marcel Mokoš (https://github.com/marcelmokos)",
+    "Martin Litvaj (https://github.com/Kamahl19)"
+  ],
+  "keywords": [
+    "react",
+    "redux",
+    "reducer",
+    "action",
+    "action type",
+    "action creator",
+    "typescript",
+    "flow"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf dist coverage",
+    "test": "cross-env BABEL_ENV=commonjs jest --testPathPattern /src/",
+    "test:watch": "yarn test -- --watch",
+    "test:coverage": "yarn test -- --coverage",
+    "test:travis:coverage": "cross-env BABEL_ENV=commonjs jest --testPathPattern /dist/ --coverage",
+    "lint:fix": "eslint \"src/**\" --fix",
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run clean && npm run build && npm run lint:fix && npm run test:travis:coverage",
+    "postinstall": "npm install",
+    "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
+    "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
+    "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
+  },
+  "pre-commit": [
+    "lint:fix",
+    "test:coverage"
+  ],
+  "dependencies": {
+    "lodash.flattendeep": "latest",
+    "lodash.isfunction": "latest",
+    "lodash.isobject": "latest",
+    "lodash.reduce": "latest"
+  },
+  "devDependencies": {
+    "babel": "latest",
+    "babel-cli": "latest",
+    "babel-eslint": "latest",
+    "babel-jest": "latest",
+    "babel-preset-es2015": "latest",
+    "babel-preset-jest": "latest",
+    "babel-preset-stage-0": "latest",
+    "cross-env": "^3.1.3",
+    "eslint": "latest",
+    "eslint-plugin-flowtype": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-jest": "latest",
+    "jest": "latest",
+    "jest-cli": "latest",
+    "pre-commit": "latest",
+    "rimraf": "latest"
+  }
+}
