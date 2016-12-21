@@ -1,4 +1,4 @@
-import flattenDeep from "lodash.flattenDeep";
+import {flattenDeep} from "lodash";
 
 const createActionType = (...type) => flattenDeep(type).join("_");
 
