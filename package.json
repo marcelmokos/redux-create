@@ -32,7 +32,6 @@
     "lint:fix": "eslint \"src/**\" --fix",
     "build": "babel src --out-dir dist",
     "prepublish": "npm run clean && npm run build && npm run lint:fix && npm run test:travis:coverage",
-    "postinstall": "npm install",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
     "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
