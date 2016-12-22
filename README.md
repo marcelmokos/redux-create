@@ -2,7 +2,8 @@
 
 redux create reducer, action type and action creator
 
-[![npm version](https://img.shields.io/npm/v/redux-create.svg?style=flat)](https://www.npmjs.com/package/redux-create) [![Coverage Status](https://coveralls.io/repos/github/marcelmokos/redux-create/badge.svg?branch=master)](https://coveralls.io/github/marcelmokos/redux-create?branch=master) [![Build Status](https://travis-ci.org/marcelmokos/redux-create.svg?branch=master)](https://travis-ci.org/marcelmokos/redux-create) [![dependency](https://david-dm.org/marcelmokos/redux-create/status.svg)](https://david-dm.org/marcelmokos/redux-create) [![devDep](https://david-dm.org/marcelmokos/redux-create/dev-status.svg)](https://david-dm.org/marcelmokos/redux-create?type=dev)
+[![npm version](https://img.shields.io/npm/v/redux-create.svg?style=flat)](https://www.npmjs.com/package/redux-create) [![Build Status](https://travis-ci.org/marcelmokos/redux-create.svg?branch=master)](https://travis-ci.org/marcelmokos/redux-create) [![Coverage Status](https://coveralls.io/repos/github/marcelmokos/redux-create/badge.svg?branch=master)](https://coveralls.io/github/marcelmokos/redux-create?branch=master) [![dependency](https://david-dm.org/marcelmokos/redux-create/status.svg)](https://david-dm.org/marcelmokos/redux-create) [![devDep](https://david-dm.org/marcelmokos/redux-create/dev-status.svg)](https://david-dm.org/marcelmokos/redux-create?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/marcelmokos/redux-create/badge.svg)](https://snyk.io/test/github/marcelmokos/redux-create) 
 
 ## Create Action Type
 
