@@ -1,5 +1,5 @@
 import {flattenDeep} from "lodash";
 
-const createActionType = (...type) => flattenDeep(type).join("_");
+const createActionType = (...parts) => flattenDeep(parts).join("_");
 
 export default createActionType;

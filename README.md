@@ -55,21 +55,93 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 
 Flow Type: 
 ```
-declare type Product {
+declare type TProduct {
   id: number;
   name: string;
 }
  
-const createProduct = createActionCreator<Product>(PRODUCT_CREATE)
+const createProduct = createActionCreator<TProduct>(PRODUCT_CREATE)
 
-const productData: Product = {id: 1, name: "test"}
+const productData: TProduct = {id: 1, name: "test"}
 createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "test"}}
 ```
 
-## Create an reducer
+## Create an Async Action Creator 
+- creates object containing Action Creators for async operations (request, success, failure)
+
+```
+const asyncActionType = {
+  REQUEST: "REQUEST",
+  SUCCESS: "SUCCESS",
+  FAILURE: "FAILURE",
+};
+
+const createAsyncActionCreator = (...type) => ({
+  request: createActionCreator(type, asyncActionType.REQUEST),
+  success: createActionCreator(type, asyncActionType.SUCCESS),
+  failure: createActionCreator(type, asyncActionType.FAILURE),
+});
+```
+
+Usage: 
+
+Javascript:
+```
+export const fetchProductsAction = createAsyncActionCreator(FETCH_PRODUCTS);
+
+export const fetchProducts = () => (dispatch) => {
+  dispatch(fetchProductsAction.request());
+
+  productsApi.fetchProducts().then(
+    (payload) => dispatch(fetchProductsAction.success(payload)),
+    (error) => dispatch(fetchProductsAction.failure(error)),
+  );
+};
+```
+
+TypeScript:
+```
+interface IErrorPayload {
+  message: string;
+}
+
+export const fetchProductsAction = createAsyncActionCreator<{}, IProduct[], IErrorPayload>(FETCH_PRODUCTS);
+
+export const fetchProducts = () => (dispatch) => {
+  dispatch(fetchProductsAction.request());
+
+  productsApi.fetchProducts().then(
+    (payload) => dispatch(fetchProductsAction.success(payload)),
+    (error) => dispatch(fetchProductsAction.failure(error)),
+  );
+};
+```
+
+Flow Type: 
+```
+declare type TErrorPayload {
+  message: string;
+}
+
+ export const fetchProductsAction = createAsyncActionCreator<{}, TProduct[], TErrorPayload>(FETCH_PRODUCTS);
+
+ export const fetchProducts = () => (dispatch) => {
+  dispatch(fetchProductsAction.request());
+
+  productsApi.fetchProducts().then(
+    (payload) => dispatch(fetchProductsAction.success(payload)),
+    (error) => dispatch(fetchProductsAction.failure(error)),
+  );
+};
+```
+
+## Create an Reducer
 
 - creates nested reducer without need of writing switch statement
 
+Usage: 
+
+Javascript:
 ```
 const selectedProduct = createReducer(state = null, {
   [PRODUCT]: {
@@ -79,6 +151,18 @@ const selectedProduct = createReducer(state = null, {
   }
 });
 ```
+
+TypeScript, Flow Type:
+```
+const selectedProduct = createReducer(state: null | number = null, {
+  [PRODUCT]: {
+    [SELECT]: (state, payload) => payload,
+    [TOGGLE]: (state, payload) => state === payload ? null : payload,
+    [UNSELECT]: () => null,
+  }
+});
+```
+
 same code written using switch
 ```
 const selectedProduct = (state = null, action) => {
