@@ -13,7 +13,7 @@ const createReducer = (defaultState, reducerMap) => {
       }
 
       if (!isObject(reducer)) {
-        throw "createReducer expect 'Object' tree with 'Leafs' (A node with no children) containing functions";
+        throw "createReducer expect 'Object' tree with 'Leafs' (A node with no children) containing function that takes arguments (state, action)";
       }
 
       return iterator(reducer, acc, [createActionType(prefix, type)]);
@@ -22,9 +22,13 @@ const createReducer = (defaultState, reducerMap) => {
   const flattened = iterator(reducerMap);
 
   return (state = defaultState, action) => {
+    if (!flattened.hasOwnProperty(action.type)) {
+      return state;
+    }
+
     const reducer = flattened[action.type];
 
-    return (reducer) ? reducer(state, action.payload) : state;
+    return reducer(state, action.payload);
   };
 };
 
