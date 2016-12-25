@@ -37,7 +37,7 @@ Javascript:
 const createProduct = createActionCreator(PRODUCT_CREATE)
 
 const productData = {id: 1, name: "test"}
-createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "test"}
+createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "test"}}
 ```
 
 TypeScript:
