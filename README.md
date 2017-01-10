@@ -135,7 +135,7 @@ declare type TErrorPayload {
 };
 ```
 
-## Create an Reducer
+## Create a Reducer
 
 - creates nested reducer without need of writing switch statement
 
