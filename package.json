@@ -1,6 +1,6 @@
 {
   "name": "redux-create",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "redux create reducer, action creator, async action creator, action type",
   "main": "dist/index.js",
   "typings": "./index.d.ts",
