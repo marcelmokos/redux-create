@@ -1,30 +1,52 @@
 # redux-create
 
-redux create reducer, action type and action creator
+redux create reducer, action creator, async action creator, action type
 
 [![npm version](https://img.shields.io/npm/v/redux-create.svg?style=flat)](https://www.npmjs.com/package/redux-create) [![Build Status](https://travis-ci.org/marcelmokos/redux-create.svg?branch=master)](https://travis-ci.org/marcelmokos/redux-create) [![Coverage Status](https://coveralls.io/repos/github/marcelmokos/redux-create/badge.svg?branch=master)](https://coveralls.io/github/marcelmokos/redux-create?branch=master) [![dependency](https://david-dm.org/marcelmokos/redux-create/status.svg)](https://david-dm.org/marcelmokos/redux-create) [![devDep](https://david-dm.org/marcelmokos/redux-create/dev-status.svg)](https://david-dm.org/marcelmokos/redux-create?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/marcelmokos/redux-create/badge.svg)](https://snyk.io/test/github/marcelmokos/redux-create) 
 
-## Create Action Type
+## Create a Reducer
 
-- creates action type from one or more strings
-- exposed helper method can be replaced with template strings
+- creates nested reducer without need of writing switch statement
 
+Usage: 
+
+Javascript:
 ```
-const PRODUCT = "PRODUCT";
-const CATEGORY = "CATEGORY";
- 
-const SELECT = "SELECT";
-cosnt CREATE = "CREATE";
-const UPDATE = "UPDATE";
-cosnt DELETE = "DELETE";
- 
-cosnt PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
-cosnt PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
-cosnt PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
-cosnt PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
+const selectedProduct = createReducer(state = null, {
+  [PRODUCT]: {
+    [SELECT]: (state, payload) => payload,
+    [TOGGLE]: (state, payload) => state === payload ? null : payload,
+    [UNSELECT]: () => null,
+  }
+});
+```
 
-...
+TypeScript, Flow Type:
+```
+const selectedProduct = createReducer(state: null | number = null, {
+  [PRODUCT]: {
+    [SELECT]: (state, payload) => payload,
+    [TOGGLE]: (state, payload) => state === payload ? null : payload,
+    [UNSELECT]: () => null,
+  }
+});
+```
+
+same code written using switch
+```
+const selectedProduct = (state = null, action) => {
+  switch (action.type) {
+    case PRODUCT_SELECT:
+      return action.payload;
+    case PRODUCT_TOGGLE:
+      return state === action.payload ? null : action.payload;
+    case PRODUCT_UNSELECT:
+      return null;
+    default:
+      return state;
+  }
+};
 ```
 
 ## Create Action Creator
@@ -135,46 +157,24 @@ declare type TErrorPayload {
 };
 ```
 
-## Create a Reducer
+## Create Action Type
 
-- creates nested reducer without need of writing switch statement
+- creates action type from one or more strings
+- exposed helper method can be replaced with template strings
 
-Usage: 
+```
+const PRODUCT = "PRODUCT";
+const CATEGORY = "CATEGORY";
+ 
+const SELECT = "SELECT";
+cosnt CREATE = "CREATE";
+const UPDATE = "UPDATE";
+cosnt DELETE = "DELETE";
+ 
+cosnt PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
+cosnt PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
+cosnt PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
+cosnt PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
 
-Javascript:
-```
-const selectedProduct = createReducer(state = null, {
-  [PRODUCT]: {
-    [SELECT]: (state, payload) => payload,
-    [TOGGLE]: (state, payload) => state === payload ? null : payload,
-    [UNSELECT]: () => null,
-  }
-});
-```
-
-TypeScript, Flow Type:
-```
-const selectedProduct = createReducer(state: null | number = null, {
-  [PRODUCT]: {
-    [SELECT]: (state, payload) => payload,
-    [TOGGLE]: (state, payload) => state === payload ? null : payload,
-    [UNSELECT]: () => null,
-  }
-});
-```
-
-same code written using switch
-```
-const selectedProduct = (state = null, action) => {
-  switch (action.type) {
-    case PRODUCT_SELECT:
-      return action.payload;
-    case PRODUCT_TOGGLE:
-      return state === action.payload ? null : action.payload;
-    case PRODUCT_UNSELECT:
-      return null;
-    default:
-      return state;
-  }
-};
+...
 ```
