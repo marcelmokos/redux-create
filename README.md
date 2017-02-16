@@ -12,7 +12,7 @@ redux create reducer, action creator, async action creator, action type
 Usage: 
 
 Javascript:
-```
+```javascript
 const selectedProduct = createReducer(state = null, {
   [PRODUCT]: {
     [SELECT]: (state, payload) => payload,
@@ -23,7 +23,7 @@ const selectedProduct = createReducer(state = null, {
 ```
 
 TypeScript, Flow Type:
-```
+```javascript
 const selectedProduct = createReducer(state: null | number = null, {
   [PRODUCT]: {
     [SELECT]: (state, payload) => payload,
@@ -34,7 +34,7 @@ const selectedProduct = createReducer(state: null | number = null, {
 ```
 
 same code written using switch
-```
+```javascript
 const selectedProduct = (state = null, action) => {
   switch (action.type) {
     case PRODUCT_SELECT:
@@ -55,7 +55,7 @@ const selectedProduct = (state = null, action) => {
 - calling the created Action Creator will return Action Object of shape {type: string, payload: any}
 
 Javascript:
-```
+```javascript
 const createProduct = createActionCreator(PRODUCT_CREATE)
 
 const productData = {id: 1, name: "test"}
@@ -63,7 +63,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 ```
 
 TypeScript:
-```
+```javascript
 interface IProduct {
   id: number;
   name: string;
@@ -76,7 +76,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 ```
 
 Flow Type: 
-```
+```javascript
 declare type TProduct {
   id: number;
   name: string;
@@ -91,7 +91,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 ## Create an Async Action Creator 
 - creates object containing Action Creators for async operations (request, success, failure)
 
-```
+```javascript
 const asyncActionType = {
   REQUEST: "REQUEST",
   SUCCESS: "SUCCESS",
@@ -108,7 +108,7 @@ const createAsyncActionCreator = (...type) => ({
 Usage: 
 
 Javascript:
-```
+```javascript
 export const fetchProductsAction = createAsyncActionCreator(FETCH_PRODUCTS);
 
 export const fetchProducts = () => (dispatch) => {
@@ -122,7 +122,7 @@ export const fetchProducts = () => (dispatch) => {
 ```
 
 TypeScript:
-```
+```javascript
 interface IErrorPayload {
   message: string;
 }
@@ -140,7 +140,7 @@ export const fetchProducts = () => (dispatch) => {
 ```
 
 Flow Type: 
-```
+```javascript
 declare type TErrorPayload {
   message: string;
 }
@@ -162,7 +162,7 @@ declare type TErrorPayload {
 - creates action type from one or more strings
 - exposed helper method can be replaced with template strings
 
-```
+```javascript
 const PRODUCT = "PRODUCT";
 const CATEGORY = "CATEGORY";
  
