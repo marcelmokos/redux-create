@@ -1,10 +1,6 @@
 import createReducer from "./createReducer";
 
-const testReducerDispatchAction = ({
-  reducer,
-  action,
-  expectState,
-}) => {
+const testReducerDispatchAction = ({reducer, action, expectState}) => {
   describe(`when action '${action.type}' has payload '${action.payload.toString()}'  `, () => {
     let state;
 
@@ -82,9 +78,11 @@ describe("create reducer", () => {
 
   describe("given incorrect reducer", () => {
     it("should throw error", () => {
-      expect(() => createReducer(false, {
-        A: false,
-      })).toThrow();
+      expect(() =>
+        createReducer(false, {
+          A: false,
+        }),
+      ).toThrow();
     });
   });
 });

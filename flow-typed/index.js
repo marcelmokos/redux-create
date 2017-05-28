@@ -1,8 +1,8 @@
 declare module "redux-create" {
   declare type Action<P> = {
-    type: string;
-    payload?: P;
-  }
+    type: string,
+    payload?: P,
+  };
   declare type Reducer<S, A> = (state: S, action: A) => S;
 
   /* create Action Type */
@@ -17,20 +17,20 @@ const PRODUCT = "PRODUCT";
 const CATEGORY = "CATEGORY";
 
 const SELECT = "SELECT";
-cosnt CREATE = "CREATE";
+const CREATE = "CREATE";
 const UPDATE = "UPDATE";
-cosnt DELETE = "DELETE";
+const DELETE = "DELETE";
 
-cosnt PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
-cosnt PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
-cosnt PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
-cosnt PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
+const PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
+const PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
+const PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
+const PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
 
    */
   declare function createActionType(...parts: Array<string>): string;
 
   /* create Action Creator */
-  declare type ActionCreator<P> = (payload?: P) => Action<P>;
+  declare type ActionCreator<P> = (payload: ?P) => Action<P>;
 
   /**
    * Create an action creator
@@ -58,7 +58,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 
    * - Flow Type
 
-declare type TProduct {
+declare type TProduct = {
   id: number;
   name: string;
 }
@@ -69,7 +69,9 @@ const productData: TProduct = {id: 1, name: "test"}
 createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "test"}}
 
    */
-  declare function createActionCreator<Payload>(...type: Array<string>): ActionCreator<Payload>;
+  declare function createActionCreator<Payload>(
+    ...type: Array<string>
+  ): ActionCreator<Payload>;
 
   /**
    * Create an async action creator
@@ -107,17 +109,22 @@ export const fetchProducts = () => (dispatch) => {
 };
 
    */
-  declare function createAsyncActionCreator<RequestPayload, SuccessPayload, FailurePayload>
-  (...type: Array<string>): {
+  declare function createAsyncActionCreator<
+    RequestPayload,
+    SuccessPayload,
+    FailurePayload,
+  >(
+    ...type: Array<string>
+  ): {
     request: () => ActionCreator<RequestPayload>,
     success: () => ActionCreator<SuccessPayload>,
     failure: () => ActionCreator<FailurePayload>,
-  }
+  };
 
   /* create Reducer */
   declare type CustomReducersMapObject = {
-    [key: string]: CustomReducersMapObject | void;
-  }
+    [key: string]: CustomReducersMapObject | void,
+  };
 
   /**
    * Create an reducer
@@ -171,6 +178,8 @@ const selectedProduct = (state = null, action) => {
 };
 
    */
-  declare function createReducer<S, R: CustomReducersMapObject>(defaultState: S, reducerMap: R):
-  Reducer<S, Action<S>>;
+  declare function createReducer<S, R: CustomReducersMapObject>(
+    defaultState: S,
+    reducerMap: R,
+  ): Reducer<S, Action<S>>;
 }

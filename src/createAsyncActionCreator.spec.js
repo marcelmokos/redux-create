@@ -4,10 +4,10 @@ import {createAsyncActionCreator} from "./createAsyncActionCreator";
 describe("create async action creator", () => {
   describe("call with simple text", () => {
     it("request action", () => {
-      expect(createAsyncActionCreator("FETCH_PRODUCT")
-        .request({
+      expect(
+        createAsyncActionCreator("FETCH_PRODUCT").request({
           id: 1,
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.REQUEST}`,
         payload: {id: 1},
@@ -15,11 +15,11 @@ describe("create async action creator", () => {
     });
 
     it("success action", () => {
-      expect(createAsyncActionCreator("FETCH_PRODUCT")
-        .success({
+      expect(
+        createAsyncActionCreator("FETCH_PRODUCT").success({
           id: 1,
           name: "Product 1",
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.SUCCESS}`,
         payload: {id: 1, name: "Product 1"},
@@ -27,12 +27,12 @@ describe("create async action creator", () => {
     });
 
     it("failure action", () => {
-      expect(createAsyncActionCreator("FETCH_PRODUCT")
-        .failure({
+      expect(
+        createAsyncActionCreator("FETCH_PRODUCT").failure({
           error: {
             message: "something went wrong",
           },
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.FAILURE}`,
         payload: {
@@ -46,10 +46,10 @@ describe("create async action creator", () => {
 
   describe("call with multiple strings", () => {
     it("request action", () => {
-      expect(createAsyncActionCreator("FETCH", "PRODUCT")
-        .request({
+      expect(
+        createAsyncActionCreator("FETCH", "PRODUCT").request({
           id: 1,
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.REQUEST}`,
         payload: {id: 1},
@@ -57,11 +57,11 @@ describe("create async action creator", () => {
     });
 
     it("success action", () => {
-      expect(createAsyncActionCreator("FETCH", "PRODUCT")
-        .success({
+      expect(
+        createAsyncActionCreator("FETCH", "PRODUCT").success({
           id: 1,
           name: "Product 1",
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.SUCCESS}`,
         payload: {id: 1, name: "Product 1"},
@@ -69,12 +69,12 @@ describe("create async action creator", () => {
     });
 
     it("failure action", () => {
-      expect(createAsyncActionCreator("FETCH", "PRODUCT")
-        .failure({
+      expect(
+        createAsyncActionCreator("FETCH", "PRODUCT").failure({
           error: {
             message: "something went wrong",
           },
-        })
+        }),
       ).toEqual({
         type: `FETCH_PRODUCT_${asyncActionType.FAILURE}`,
         payload: {

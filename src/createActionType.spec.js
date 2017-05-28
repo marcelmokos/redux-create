@@ -1,6 +1,5 @@
 import createActionType from "./createActionType";
 
-
 describe("createActionType", () => {
   it("simple type", () => {
     expect(createActionType("A")).toBe("A");

@@ -34,38 +34,50 @@
     "test:watch": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage",
     "test:travis:coverage": "cross-env BABEL_ENV=commonjs jest --testPathPattern /dist/ --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "lint": "eslint \"src/**\"",
-    "lint:fix": "eslint \"src/**\" --fix",
+    "prettier": "prettier --trailing-comma all --bracket-spacing=false --write 'flow-typed/index.js' '{src,spec,__{tests,mocks}__}/**/*.js'",
+    "flow": "flow",
+    "flow:coverage": "flow coverage ./src/index.js --color",
+    "lint": "eslint \"src/**\" --cache",
+    "lint:fix": "yarn run prettier && yarn run lint -- --fix",
+    "lint:staged": "yarn lint:fix -- --rule 'no-console:2' --rule 'no-debugger:2'",
+    "precommit": "lint-staged",
     "build": "babel src --out-dir dist",
     "prepublish": "npm run clean && npm run lint && npm run build && npm run test:travis:coverage",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
     "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
   },
-  "pre-commit": [
-    "lint:fix",
-    "test:coverage"
-  ],
+  "lint-staged": {
+    "*.js": [
+      "lint:staged",
+      "git add"
+    ]
+  },
   "dependencies": {
-    "lodash": "latest"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "babel": "latest",
-    "babel-cli": "latest",
-    "babel-eslint": "latest",
-    "babel-jest": "latest",
-    "babel-preset-es2015": "latest",
-    "babel-preset-jest": "latest",
-    "babel-preset-stage-0": "latest",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-jest": "^20.0.3",
+    "babel-preset-stage-0": "^6.24.1",
     "coveralls": "^2.11.15",
-    "cross-env": "^3.1.3",
-    "eslint": "latest",
-    "eslint-plugin-flowtype": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-jest": "latest",
-    "jest": "latest",
-    "jest-cli": "latest",
-    "pre-commit": "latest",
-    "rimraf": "latest"
+    "cross-env": "^5.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-flowtype": "^2.33.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jest": "^20.0.3",
+    "flow-bin": "^0.47.0",
+    "husky": "^0.13.4",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "lint-staged": "^3.5.0",
+    "prettier": "^1.3.1",
+    "rimraf": "^2.6.1"
   }
 }

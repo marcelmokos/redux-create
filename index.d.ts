@@ -104,7 +104,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 
  * - Flow Type
 
-declare type TProduct {
+declare type TProduct = {
  id: number;
  name: string;
 }
@@ -154,7 +154,7 @@ export const fetchProducts = () => (dispatch) => {
 
  * - Flow Type
 
-declare type TErrorPayload {
+declare type TErrorPayload = {
   message: string;
 }
 

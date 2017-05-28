@@ -2,7 +2,7 @@
 
 redux create reducer, action creator, async action creator, action type
 
-[![npm version](https://img.shields.io/npm/v/redux-create.svg?style=flat)](https://www.npmjs.com/package/redux-create) [![Build Status](https://travis-ci.org/marcelmokos/redux-create.svg?branch=master)](https://travis-ci.org/marcelmokos/redux-create) [![Coverage Status](https://coveralls.io/repos/github/marcelmokos/redux-create/badge.svg?branch=master)](https://coveralls.io/github/marcelmokos/redux-create?branch=master) [![dependency](https://david-dm.org/marcelmokos/redux-create/status.svg)](https://david-dm.org/marcelmokos/redux-create) [![devDep](https://david-dm.org/marcelmokos/redux-create/dev-status.svg)](https://david-dm.org/marcelmokos/redux-create?type=dev)
+[![npm version](https://img.shields.io/npm/v/redux-create.svg?style=flat)](https://www.npmjs.com/package/redux-create) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![Build Status](https://travis-ci.org/marcelmokos/redux-create.svg?branch=master)](https://travis-ci.org/marcelmokos/redux-create) [![Coverage Status](https://coveralls.io/repos/github/marcelmokos/redux-create/badge.svg?branch=master)](https://coveralls.io/github/marcelmokos/redux-create?branch=master) [![dependency](https://david-dm.org/marcelmokos/redux-create/status.svg)](https://david-dm.org/marcelmokos/redux-create) [![devDep](https://david-dm.org/marcelmokos/redux-create/dev-status.svg)](https://david-dm.org/marcelmokos/redux-create?type=dev)
 [![Known Vulnerabilities](https://snyk.io/test/github/marcelmokos/redux-create/badge.svg)](https://snyk.io/test/github/marcelmokos/redux-create) 
 
 ## Create a Reducer
@@ -77,7 +77,7 @@ createProduct(productData) // {type: "PRODUCT_CREATE", payload: {id: 1, name: "t
 
 Flow Type: 
 ```javascript
-declare type TProduct {
+declare type TProduct = {
   id: number;
   name: string;
 }
@@ -141,7 +141,7 @@ export const fetchProducts = () => (dispatch) => {
 
 Flow Type: 
 ```javascript
-declare type TErrorPayload {
+declare type TErrorPayload = {
   message: string;
 }
 
@@ -167,14 +167,44 @@ const PRODUCT = "PRODUCT";
 const CATEGORY = "CATEGORY";
  
 const SELECT = "SELECT";
-cosnt CREATE = "CREATE";
+const CREATE = "CREATE";
 const UPDATE = "UPDATE";
-cosnt DELETE = "DELETE";
+const DELETE = "DELETE";
  
-cosnt PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
-cosnt PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
-cosnt PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
-cosnt PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
+const PRODUCT_SELECT = createActionType(PRODUCT, SELECT) // "PRODUCT_SELECT";
+const PRODUCT_CREATE = createActionType(PRODUCT, CREATE) // "PRODUCT_CREATE";
+const PRODUCT_UPDATE = createActionType(PRODUCT, UPDATE) // "PRODUCT_UPDATE";
+const PRODUCT_DELETE = createActionType(PRODUCT, DELETE) // "PRODUCT_DELETE";
 
 ...
+```
+
+## Adding flow support
+- add this line to your .flowconfig to get flowtypes in your project
+
+```
+[include]
+./node_modules/redux-create/flow-typed/
+```
+
+- flow coverage
+```javascript
+$ flow coverage ./src/index.js --color 
+import createActionType from "./createActionType";
+import createActionCreator from "./createActionCreator";
+import {
+  asyncAction,
+  createAsyncActionCreator,
+} from "./createAsyncActionCreator";
+import createReducer from "./createReducer";
+
+export {
+  createActionType,
+  createActionCreator,
+  asyncAction,
+  createAsyncActionCreator,
+  createReducer,
+};
+
+Covered: 100.00% (0 of 0 expressions)
 ```

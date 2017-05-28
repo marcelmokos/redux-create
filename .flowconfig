@@ -1,0 +1,5 @@
+[ignore]
+
+[include]
+# add this line to your config to get flowtypes in your project
+# ./node_modules/redux-create/flow-typed/
