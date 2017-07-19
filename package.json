@@ -42,7 +42,7 @@
     "lint:staged": "yarn lint:fix -- --rule 'no-console:2' --rule 'no-debugger:2'",
     "precommit": "lint-staged",
     "build": "babel src --out-dir dist",
-    "prepublish": "npm run clean && npm run lint && npm run build && npm run test:travis:coverage",
+    "prepare": "npm run clean && npm run lint && npm run build && npm run test:travis:coverage",
     "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
     "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
     "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
