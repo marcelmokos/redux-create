@@ -1,5 +1,13 @@
 [ignore]
+.*/node_modules/.*
 
 [include]
 # add this line to your config to get flowtypes in your project
 # ./node_modules/redux-create/flow-typed/
+
+[libs]
+flow-typed
+
+[options]
+emoji=true
+

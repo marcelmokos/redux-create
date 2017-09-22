@@ -1,4 +1,8 @@
-.idea/**
-dist/**
-flow-typed/**
+flow-typed/npm/**
 coverage/**
+dist/**
+.history/**
+.next/**
+.vscode/**
+.idea/**
+

@@ -5,11 +5,11 @@ describe("createActionType", () => {
     expect(createActionType("A")).toBe("A");
   });
 
-  it("simple type", () => {
+  it("simple type using spread arguments", () => {
     expect(createActionType("A", "B")).toBe("A_B");
   });
 
-  it("simple type", () => {
+  it("simple type using list of arguments", () => {
     expect(createActionType(["A", "B"])).toBe("A_B");
   });
 });
