@@ -1,36 +1,4 @@
 {
-  "scripts": {
-    "test": "jest",
-    "test:watch": "yarn test --watch",
-    "test:update": "yarn test --update",
-    "test:coverage": "yarn test --coverage",
-    "lint": "eslint \"src/**\" --cache",
-    "lint:fix": "yarn run lint --fix",
-    "lint:staged": "yarn lint:fix --rule 'no-console:2' --rule 'no-debugger:2'",
-    "precommit": "lint-staged",
-    "prepush": "yarn test",
-    "flow:setup": "flow-typed install && flow-typed update",
-    "flow": "flow --show-all-errors",
-    "flow:watch": "flow-watch",
-    "flow:coverage": "flow coverage ./src/index.js --color",
-    "clean": "rimraf dist coverage",
-    "test:travis:coverage": "jest /dist/ --coverage",
-    "flow:prepare": "flow-typed install && flow-typed update",
-    "build": "BABEL_ENV=production babel src --out-dir dist",
-    "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
-    "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
-    "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "lint:staged",
-      "git add"
-    ],
-    "*.{json,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "name": "redux-create",
   "version": "1.0.9",
   "description": "redux create reducer, action creator, async action creator, action type",
@@ -63,18 +31,52 @@
   "dependencies": {
     "lodash": "^4.17.4"
   },
+  "scripts": {
+    "flow:setup": "yarn && flow-typed install && flow-typed update",
+    "flow": "flow --show-all-errors",
+    "flow:watch": "flow-watch",
+    "flow:coverage": "flow coverage ./src/index.js --color",
+    "prepush": "yarn test",
+    "test": "jest",
+    "test:watch": "yarn test --watch",
+    "test:update": "yarn test --update",
+    "test:coverage": "yarn test --coverage",
+    "test:travis:coverage": "jest /dist/ --coverage",
+    "lint": "eslint . --cache",
+    "lint:fix": "yarn run lint --fix",
+    "lint:staged": "yarn lint:fix --rule 'no-console:2' --rule 'no-debugger:2'",
+    "precommit": "lint-staged",
+    "clean": "rimraf dist coverage",
+    "build": "BABEL_ENV=production babel src --out-dir dist",
+    "release-patch": "npm version patch -m \"Upgrade to %s\" && npm publish",
+    "release-minor": "npm version minor -m \"Upgrade to %s\" && npm publish",
+    "release-major": "npm version major -m \"Upgrade to %s\" && npm publish"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "lint:staged",
+      "git add"
+    ],
+    "*.{json,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-styled-components": "^1.2.0",
+    "babel-preset-react-app": "^3.0.2",
     "coveralls": "^2.11.15",
     "cross-env": "^5.0.5",
-    "eslint": "^4.5.0",
+    "eslint": "^4.7.2",
     "eslint-config-with-prettier": "^1.0.0",
     "flow-bin": "^0.55.0",
     "flow-typed": "^2.1.5",
     "flow-watch": "^1.1.1",
     "husky": "^0.14.3",
     "jest": "^21.1.0",
-    "lint-staged": "^4.0.4",
+    "lint-staged": "^4.2.2",
+    "prettier": "^1.7.0",
     "rimraf": "^2.6.1"
   },
   "jest": {

@@ -1,5 +1,4 @@
 [ignore]
-.*/node_modules/.*
 
 [include]
 # add this line to your config to get flowtypes in your project

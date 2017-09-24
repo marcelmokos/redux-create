@@ -1,3 +1,4 @@
+// @flow
 declare module "redux-create" {
   declare type Action<P> = {
     type: string,
