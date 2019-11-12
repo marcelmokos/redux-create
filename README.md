@@ -1,3 +1,6 @@
+# Archived 
+This project is no longer maintained. Please use [typesafe-actions](https://github.com/piotrwitek/typesafe-actions) as they are better.
+
 # redux-create
 
 redux create reducer, action creator, async action creator, action type
